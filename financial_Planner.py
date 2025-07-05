@@ -867,7 +867,7 @@ def education_planning():
         st.subheader("Education Parameters")
         child_age = st.number_input("Child's Current Age", min_value=0, max_value=25, value=5)
         education_start_age = st.number_input("Education Start Age", min_value=child_age+1, max_value=30, value=18)
-        current_education_cost = st.number_input("Current Education Cost ($)", min_value=0, value=50000)
+        current_education_cost = st.number_input("Current Education Cost (₹)", min_value=0, value=50000)
         education_inflation = st.slider("Education Inflation Rate (%)", min_value=1.0, max_value=15.0, value=8.0, step=0.1)
         expected_return = st.slider("Expected Return on Investment (%)", min_value=1.0, max_value=20.0, value=12.0, step=0.1)
         
@@ -884,9 +884,9 @@ def education_planning():
             
             st.session_state.financial_data['education'] = {
                 'Years to Education': years_to_education,
-                'Future Education Cost': f"${future_education_cost:,.2f}",
-                'Required Monthly SIP': f"${required_monthly_sip:,.2f}",
-                'Total Investment': f"${required_monthly_sip * months_to_education:,.2f}"
+                'Future Education Cost': f"₹{future_education_cost:,.2f}",
+                'Required Monthly SIP': f"₹{required_monthly_sip:,.2f}",
+                'Total Investment': f"₹{required_monthly_sip * months_to_education:,.2f}"
             }
     
     with col2:
@@ -903,7 +903,7 @@ def loan_planning():
     
     with col1:
         st.subheader("Loan Parameters")
-        loan_amount = st.number_input("Loan Amount ($)", min_value=0, value=300000)
+        loan_amount = st.number_input("Loan Amount (₹)", min_value=0, value=300000)
         interest_rate = st.slider("Interest Rate (%)", min_value=1.0, max_value=30.0, value=8.5, step=0.1)
         loan_tenure = st.slider("Loan Tenure (Years)", min_value=1, max_value=30, value=20)
         
@@ -913,9 +913,9 @@ def loan_planning():
             total_interest = total_payment - loan_amount
             
             st.session_state.financial_data['loan'] = {
-                'Monthly EMI': f"${monthly_emi:,.2f}",
-                'Total Payment': f"${total_payment:,.2f}",
-                'Total Interest': f"${total_interest:,.2f}",
+                'Monthly EMI': f"₹{monthly_emi:,.2f}",
+                'Total Payment': f"₹{total_payment:,.2f}",
+                'Total Interest': f"₹{total_interest:,.2f}",
                 'Interest %': f"{(total_interest/loan_amount * 100):.2f}%"
             }
     
@@ -929,7 +929,7 @@ def loan_planning():
             # Create loan amortization chart
             months = loan_tenure * 12
             monthly_rate = interest_rate / 12 / 100
-            monthly_emi = float(data['Monthly EMI'].replace('$', '').replace(',', ''))
+            monthly_emi = float(data['Monthly EMI'].replace('₹', '').replace(',', ''))
             
             balance = loan_amount
             principal_payments = []
@@ -971,8 +971,8 @@ def loan_planning():
             
             fig.update_layout(title_text="Loan Amortization Schedule")
             fig.update_xaxes(title_text="Month")
-            fig.update_yaxes(title_text="Payment Amount ($)", secondary_y=False)
-            fig.update_yaxes(title_text="Outstanding Balance ($)", secondary_y=True)
+            fig.update_yaxes(title_text="Payment Amount (₹)", secondary_y=False)
+            fig.update_yaxes(title_text="Outstanding Balance (₹)", secondary_y=True)
             
             st.plotly_chart(fig, use_container_width=True)
 
@@ -983,18 +983,18 @@ def budget_planning():
     
     with col1:
         st.subheader("Income")
-        salary = st.number_input("Monthly Salary ($)", min_value=0, value=5000)
-        other_income = st.number_input("Other Monthly Income ($)", min_value=0, value=0)
+        salary = st.number_input("Monthly Salary (₹)", min_value=0, value=5000)
+        other_income = st.number_input("Other Monthly Income (₹)", min_value=0, value=0)
         total_income = salary + other_income
         
         st.subheader("Expenses")
-        housing = st.number_input("Housing ($)", min_value=0, value=1500)
-        food = st.number_input("Food ($)", min_value=0, value=500)
-        transportation = st.number_input("Transportation ($)", min_value=0, value=300)
-        utilities = st.number_input("Utilities ($)", min_value=0, value=200)
-        entertainment = st.number_input("Entertainment ($)", min_value=0, value=300)
-        healthcare = st.number_input("Healthcare ($)", min_value=0, value=200)
-        other_expenses = st.number_input("Other Expenses ($)", min_value=0, value=200)
+        housing = st.number_input("Housing (₹)", min_value=0, value=1500)
+        food = st.number_input("Food (₹)", min_value=0, value=500)
+        transportation = st.number_input("Transportation (₹)", min_value=0, value=300)
+        utilities = st.number_input("Utilities (₹)", min_value=0, value=200)
+        entertainment = st.number_input("Entertainment (₹)", min_value=0, value=300)
+        healthcare = st.number_input("Healthcare (₹)", min_value=0, value=200)
+        other_expenses = st.number_input("Other Expenses (₹)", min_value=0, value=200)
         
         total_expenses = housing + food + transportation + utilities + entertainment + healthcare + other_expenses
         
@@ -1003,9 +1003,9 @@ def budget_planning():
             savings_rate = (savings / total_income * 100) if total_income > 0 else 0
             
             st.session_state.financial_data['budget'] = {
-                'Total Income': f"${total_income:,.2f}",
-                'Total Expenses': f"${total_expenses:,.2f}",
-                'Monthly Savings': f"${savings:,.2f}",
+                'Total Income': f"₹{total_income:,.2f}",
+                'Total Expenses': f"₹{total_expenses:,.2f}",
+                'Monthly Savings': f"₹{savings:,.2f}",
                 'Savings Rate': f"{savings_rate:.2f}%"
             }
     
@@ -1033,14 +1033,14 @@ def tax_planning():
     
     with col1:
         st.subheader("Tax Information")
-        annual_income = st.number_input("Annual Income ($)", min_value=0, value=60000)
+        annual_income = st.number_input("Annual Income (₹)", min_value=0, value=60000)
         tax_bracket = st.selectbox("Tax Bracket (%)", [10, 15, 22, 24, 32, 35, 37])
         
         # Tax-saving investments
         st.subheader("Tax-Saving Investments")
-        retirement_contribution = st.number_input("401(k) Contribution ($)", min_value=0, value=6000)
-        ira_contribution = st.number_input("IRA Contribution ($)", min_value=0, value=6000)
-        hsa_contribution = st.number_input("HSA Contribution ($)", min_value=0, value=3000)
+        retirement_contribution = st.number_input("401(k) Contribution (₹)", min_value=0, value=6000)
+        ira_contribution = st.number_input("IRA Contribution (₹)", min_value=0, value=6000)
+        hsa_contribution = st.number_input("HSA Contribution (₹)", min_value=0, value=3000)
         
         if st.button("Calculate Tax Savings"):
             total_deductions = retirement_contribution + ira_contribution + hsa_contribution
@@ -1051,10 +1051,10 @@ def tax_planning():
             tax_savings = tax_without_planning - tax_with_planning
             
             st.session_state.financial_data['tax'] = {
-                'Annual Income': f"${annual_income:,.2f}",
-                'Total Deductions': f"${total_deductions:,.2f}",
-                'Taxable Income': f"${taxable_income:,.2f}",
-                'Tax Savings': f"${tax_savings:,.2f}"
+                'Annual Income': f"₹{annual_income:,.2f}",
+                'Total Deductions': f"₹{total_deductions:,.2f}",
+                'Taxable Income': f"₹{taxable_income:,.2f}",
+                'Tax Savings': f"₹{tax_savings:,.2f}"
             }
     
     with col2:
@@ -1071,10 +1071,10 @@ def emergency_fund_planning():
     
     with col1:
         st.subheader("Emergency Fund Parameters")
-        monthly_expenses = st.number_input("Monthly Expenses ($)", min_value=0, value=3000)
+        monthly_expenses = st.number_input("Monthly Expenses (₹)", min_value=0, value=3000)
         months_coverage = st.slider("Months of Coverage", min_value=3, max_value=12, value=6)
-        current_savings = st.number_input("Current Emergency Savings ($)", min_value=0, value=5000)
-        monthly_contribution = st.number_input("Monthly Contribution ($)", min_value=0, value=300)
+        current_savings = st.number_input("Current Emergency Savings (₹)", min_value=0, value=5000)
+        monthly_contribution = st.number_input("Monthly Contribution (₹)", min_value=0, value=300)
         
         if st.button("Calculate Emergency Fund"):
             target_fund = monthly_expenses * months_coverage
@@ -1086,9 +1086,9 @@ def emergency_fund_planning():
                 months_to_target = float('inf')
             
             st.session_state.financial_data['emergency'] = {
-                'Target Emergency Fund': f"${target_fund:,.2f}",
-                'Current Savings': f"${current_savings:,.2f}",
-                'Shortfall': f"${shortfall:,.2f}",
+                'Target Emergency Fund': f"₹{target_fund:,.2f}",
+                'Current Savings': f"₹{current_savings:,.2f}",
+                'Shortfall': f"₹{shortfall:,.2f}",
                 'Months to Target': f"{months_to_target:.1f}" if months_to_target != float('inf') else "∞"
             }
     
