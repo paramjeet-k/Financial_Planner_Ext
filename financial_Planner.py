@@ -701,13 +701,13 @@ def show_dashboard():
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
-        st.metric("Total Assets", "$0", "0%")
+        st.metric("Total Assets", "₹0", "0%")
     with col2:
-        st.metric("Total Liabilities", "$0", "0%")
+        st.metric("Total Liabilities", "₹0", "0%")
     with col3:
-        st.metric("Net Worth", "$0", "0%")
+        st.metric("Net Worth", "₹0", "0%")
     with col4:
-        st.metric("Monthly Savings", "$0", "0%")
+        st.metric("Monthly Savings", "₹0", "0%")
     
     # Sample portfolio chart
     if st.button("Generate Sample Portfolio"):
@@ -731,12 +731,12 @@ def investment_planning():
         investment_type = st.selectbox("Investment Type", ["Lump Sum", "SIP (Monthly)", "Both"])
         
         if investment_type in ["Lump Sum", "Both"]:
-            lump_sum = st.number_input("Lump Sum Amount ($)", min_value=0, value=10000)
+            lump_sum = st.number_input("Lump Sum Amount (₹)", min_value=0, value=10000)
         else:
             lump_sum = 0
             
         if investment_type in ["SIP (Monthly)", "Both"]:
-            monthly_sip = st.number_input("Monthly SIP Amount ($)", min_value=0, value=500)
+            monthly_sip = st.number_input("Monthly SIP Amount (₹)", min_value=0, value=500)
         else:
             monthly_sip = 0
         
@@ -815,9 +815,9 @@ def retirement_planning():
             
             st.session_state.financial_data['retirement'] = {
                 'Years to Retirement': years_to_retirement,
-                'Future Monthly Expenses': f"${future_monthly_expenses:,.2f}",
-                'Retirement Corpus Needed': f"${retirement_corpus:,.2f}",
-                'Required Monthly SIP': f"${required_monthly_sip:,.2f}"
+                'Future Monthly Expenses': f"₹{future_monthly_expenses:,.2f}",
+                'Retirement Corpus Needed': f"₹{retirement_corpus:,.2f}",
+                'Required Monthly SIP': f"₹{required_monthly_sip:,.2f}"
             }
     
     with col2:
