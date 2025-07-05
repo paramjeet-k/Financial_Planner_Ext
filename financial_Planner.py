@@ -21,25 +21,30 @@ st.set_page_config(
 # Custom CSS for better styling
 st.markdown("""
 <style>
-    .main-header {
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: #1f77b4;
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-    .metric-container {
-        background-color: #f0f2f6;
-        padding: 1rem;
-        border-radius: 10px;
-        margin: 0.5rem 0;
-    }
-    .stMetric {
-        background-color: white;
-        padding: 1rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
+   .main-header { 
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white; /* Text color */
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.metric-container {
+    background-color: #121212; /* Dark background */
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 0.5rem 0;
+    color: white; /* Ensure text inside is white */
+}
+
+.stMetric {
+    background-color: #1e1e1e; /* Slightly lighter dark for contrast */
+    color: white; /* Text color */
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(255,255,255,0.1); /* Soft light shadow */
+}
+
 </style>
 """, unsafe_allow_html=True)
 
